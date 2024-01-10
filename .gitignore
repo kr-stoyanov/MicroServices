@@ -8,3 +8,8 @@
 *.sqlite
 /.vs/VSWorkspaceState.json
 *.suo
+*.v2
+*.bin
+*.so
+*.dylib
+*.dll
