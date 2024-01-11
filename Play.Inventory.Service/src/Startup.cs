@@ -8,7 +8,10 @@ namespace Play.Inventory.Service
     using Microsoft.OpenApi.Models;
 
     using Play.Common.Extensions;
+    using Play.Inventory.Service.Clients;
     using Play.Inventory.Service.Entities;
+    using System;
+
     public class Startup
     {
         public Startup(IConfiguration configuration)
@@ -23,6 +26,11 @@ namespace Play.Inventory.Service
         {
             services.AddMongo()
                     .AddMongoRepository<InventoryItem>("inventoryitems");
+
+            services.AddHttpClient<CatalogClient>(client =>
+            {
+                client.BaseAddress = new Uri("https://localhost:5001");
+            });
 
             services.AddControllers(options =>
             {

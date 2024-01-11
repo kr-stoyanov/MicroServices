@@ -4,7 +4,7 @@
     using Play.Inventory.Service.Models;
     public static class InventoryExtensions
     {
-        public static InventoryItemDto AsDto(this InventoryItem item)
-            => new InventoryItemDto(item.CatalogItemId, item.Quantity, item.AcquiredDate);
+        public static InventoryItemDto AsDto(this InventoryItem item, string name, string description)
+            => new InventoryItemDto(item.CatalogItemId, name, description, item.Quantity, item.AcquiredDate);
     }
 }
