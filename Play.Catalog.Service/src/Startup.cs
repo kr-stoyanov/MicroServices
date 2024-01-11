@@ -6,9 +6,12 @@ namespace Play.Catalog.Service
     using Microsoft.Extensions.DependencyInjection;
     using Microsoft.Extensions.Hosting;
     using Microsoft.OpenApi.Models;
+
+    using MassTransit;
     using Play.Catalog.Service.Entities;
     using Play.Common.Extensions;
     using Play.Common.Settings;
+    using MassTransit.Definition;
 
     public class Startup
     {
@@ -26,7 +29,8 @@ namespace Play.Catalog.Service
         {
             serviceSettings = Configuration.GetSection(nameof(serviceSettings)).Get<ServiceSettings>();
             services.AddMongo()
-                    .AddMongoRepository<Item>("items");
+                    .AddMongoRepository<Item>("items")
+                    .AddMassTransitWithRabbitMq();
 
             services.AddControllers(options =>
             {
